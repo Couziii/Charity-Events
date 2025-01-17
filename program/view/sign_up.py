@@ -4,6 +4,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5.QtCore import *
+from program.controller.controller import Controller
 
 
 class UI_signup_window(QMainWindow):
@@ -12,6 +13,8 @@ class UI_signup_window(QMainWindow):
   def __init__(self, parent=None):
     super(UI_signup_window, self).__init__(parent)
     uic.loadUi(os.path.join(os.path.dirname(__file__), "ui_files", "signup_page.ui"), self)
+
+    self.controller= Controller()
 
     # accessing widgets
     self.btn_cancel = self.findChild(QPushButton, "btn_cancel")
@@ -72,10 +75,10 @@ class UI_signup_window(QMainWindow):
       if self.password.strip() == "":
         self.lbl_unauthorized_password.setText("Password must not be empty!")
         self.wrong_inputs = True
-      if self.admin_code.strip() != "":
-        if not self.controller.check_admin_code(self.admin_code):
-          self.lbl_wrong_admin_code.setText("Wrong admin code")
-          self.wrong_inputs = True
+      # if self.admin_code.strip() != "":
+      #   if not self.controller.check_admin_code(self.admin_code):
+      #     self.lbl_wrong_admin_code.setText("Wrong admin code")
+      #     self.wrong_inputs = True
       
 
   def clear_window(self):

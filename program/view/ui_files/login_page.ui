@@ -65,6 +65,17 @@
     <property name="text">
      <string>sign up</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">
+        QLabel {
+            color: blue;
+            text-decoration: underline; /* Makes it look like a hyperlink */
+        }
+        QLabel:hover {
+            color: darkblue; /* Changes the color when hovering */
+        }
+        </string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="line_edit_user_name">
     <property name="geometry">
@@ -94,6 +105,9 @@
       <width>171</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string>color: red;</string>
     </property>
     <property name="text">
      <string/>

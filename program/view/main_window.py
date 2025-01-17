@@ -4,6 +4,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5.QtCore import *
+from program.controller.controller import Controller
 
 
 class UI_main_window(QMainWindow):
@@ -11,6 +12,8 @@ class UI_main_window(QMainWindow):
     def __init__(self, parent=None, user_id=None, initial_tab_index=0):
         super(UI_main_window, self).__init__(parent)
         uic.loadUi(os.path.join(os.path.dirname(__file__), "ui_files", "main_page.ui"), self)
+
+        self.controller = Controller()
 
         self.user_id = user_id
 
@@ -95,9 +98,9 @@ class UI_main_window(QMainWindow):
                 self.btn_logout_clicked()
         elif self.change_password_clicked:
             self.wrong_inputs = False
-            self.check_input()
+            self.check_input2()
             if not self.wrong_inputs:
-               self.controller.change_password(self. user_id, self.password)
+               self.controller.change_password(self.user_id, self.password)
                self.btn_logout_clicked()
 
     def btn_ad_remove_account_clicked(self):
@@ -128,6 +131,22 @@ class UI_main_window(QMainWindow):
           self.wrong_inputs = True
         elif self.controller.get_user_id(self.user_id_new):
           self.lbl_ad_unavailable_user_id.setText("User ID already exist")
+          self.wrong_inputs = True
+        elif self.user_id_new.strip() == "":
+            self.lbl_ad_unavailable_user_id.setText("User ID must not be empty!")
+            self.wrong_inputs = True
+        elif self.password.strip() == "":
+            self.lbl_ad_unauthorized_password.setText("Password must not be empty!")
+            self.wrong_inputs = True
+
+    def check_input2(self):
+        self.get_window_values()
+        forbidden_symbols = ["'", '"', ";", "--", "/*", "*/", "#"]
+        if any(symbol in self.user_id for symbol in forbidden_symbols):
+          self.lbl_ad_unavailable_user_id.setText("No injection symbols allowed")
+          self.wrong_inputs = True
+        elif any(symbol in self.password for symbol in forbidden_symbols):
+          self.lbl_ad_unauthorized_password.setText("No injection symbols allowed")
           self.wrong_inputs = True
         elif self.user_id_new.strip() == "":
             self.lbl_ad_unavailable_user_id.setText("User ID must not be empty!")

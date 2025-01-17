@@ -6,12 +6,15 @@ from PyQt5 import uic
 from PyQt5.QtCore import *
 from program.view.sign_up import UI_signup_window
 from program.view.main_window import UI_main_window
+from program.controller.controller import Controller
 
 
 class UI_login_window(QMainWindow):
     def __init__(self, parent=None):
         super(UI_login_window, self).__init__(parent)
         uic.loadUi(os.path.join(os.path.dirname(__file__), "ui_files", "login_page.ui"), self)
+
+        self.controller= Controller()
 
         # accessing widgets
         self.btn_login = self.findChild(QPushButton, "btn_login")
