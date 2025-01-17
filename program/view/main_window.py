@@ -57,7 +57,7 @@ class UI_main_window(QMainWindow):
     ####### CLASS METHODS #######
 
     def on_tab_changed(self, index):
-        if index == 0:
+        if index == 0: # main tab
             #self.load_charities()
             pass
         else:
@@ -67,45 +67,6 @@ class UI_main_window(QMainWindow):
         self.clear_account_detals_tab()
         self.signal_object.emit()
         self.close()
-
-    def clear_account_detals_tab(self):
-        self.txt_ad_user_id.clear()
-        self.txt_ad_password.clear()
-        self.lbl_ad_unavailable_user_id.setText("")
-        self.lbl_ad_unauthorized_password.setText("")
-
-    def btn_ad_change_user_id_clicked(self):
-        self.change_user_id_clicked = True
-        self.txt_ad_user_id.setEnabled(True)
-        self.btn_ad_change_password.setEnabled(False)
-        self.btn_ad_confirm_changes.setEnabled(True)
-
-    def btn_ad_change_password_clicked(self):
-        self.change_password_clicked = True
-        self.txt_ad_password.setEnabled(True)
-        self.btn_ad_change_user_id.setEnabled(False)
-        self.btn_ad_confirm_changes.setEnabled(True)
-
-    def btn_ad_cancel_changes_clicked(self):
-        self.reset_account_detail_tab()
-
-    def btn_ad_confirm_changes_clicked(self):
-        if self.change_user_id_clicked:
-            self.wrong_inputs = False
-            self.check_input()
-            if not self.wrong_inputs:
-                self.controller.change_user_id(self.user_id, self.user_id_new)
-                self.btn_logout_clicked()
-        elif self.change_password_clicked:
-            self.wrong_inputs = False
-            self.check_input2()
-            if not self.wrong_inputs:
-               self.controller.change_password(self.user_id, self.password)
-               self.btn_logout_clicked()
-
-    def btn_ad_remove_account_clicked(self):
-        self.controller.remove_account(self.user_id)
-        self.btn_logout_clicked()
 
     ##### ACCOUNT DETAILS METHODS #####
 
@@ -158,3 +119,42 @@ class UI_main_window(QMainWindow):
     def get_window_values(self):
         self.user_id_new = self.txt_ad_user_id.text()
         self.password = self.txt_ad_password.text()
+
+    def clear_account_detals_tab(self):
+        self.txt_ad_user_id.clear()
+        self.txt_ad_password.clear()
+        self.lbl_ad_unavailable_user_id.setText("")
+        self.lbl_ad_unauthorized_password.setText("")
+
+    def btn_ad_change_user_id_clicked(self):
+        self.change_user_id_clicked = True
+        self.txt_ad_user_id.setEnabled(True)
+        self.btn_ad_change_password.setEnabled(False)
+        self.btn_ad_confirm_changes.setEnabled(True)
+
+    def btn_ad_change_password_clicked(self):
+        self.change_password_clicked = True
+        self.txt_ad_password.setEnabled(True)
+        self.btn_ad_change_user_id.setEnabled(False)
+        self.btn_ad_confirm_changes.setEnabled(True)
+
+    def btn_ad_cancel_changes_clicked(self):
+        self.reset_account_detail_tab()
+
+    def btn_ad_confirm_changes_clicked(self):
+        if self.change_user_id_clicked:
+            self.wrong_inputs = False
+            self.check_input()
+            if not self.wrong_inputs:
+                self.controller.change_user_id(self.user_id, self.user_id_new)
+                self.btn_logout_clicked()
+        elif self.change_password_clicked:
+            self.wrong_inputs = False
+            self.check_input2()
+            if not self.wrong_inputs:
+               self.controller.change_password(self.user_id, self.password)
+               self.btn_logout_clicked()
+
+    def btn_ad_remove_account_clicked(self):
+        self.controller.remove_account(self.user_id)
+        self.btn_logout_clicked()
