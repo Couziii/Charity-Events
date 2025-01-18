@@ -28,6 +28,8 @@ class UI_signup_window(QMainWindow):
     self.lbl_unauthorized_password = self.findChild(QLabel, "lbl_unauthorized_password")
     self.lbl_wrong_admin_code = self.findChild(QLabel, "lbl_wrong_admin_code")
 
+    self.wrong_inputs = False
+
     # actions
     self.btn_cancel.clicked.connect(self.btn_cancel_clicked)
     self.btn_signup.clicked.connect(self.btn_signup_clicked)
@@ -67,7 +69,7 @@ class UI_signup_window(QMainWindow):
         self.lbl_wrong_admin_code.setText("No injection symbols allowed")
         self.wrong_inputs = True
       if self.controller.get_user_id(self.user_id) is not None:
-        self.lbl_unavailable_user_id.setText("User ID already exist")
+        self.lbl_unavailable_user_id.setText("User ID already exists")
         self.wrong_inputs = True
       if self.user_id.strip() == "":
         self.lbl_unavailable_user_id.setText("User ID must not be empty!")
