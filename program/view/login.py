@@ -25,6 +25,8 @@ class UI_login_window(QMainWindow):
         self.lbl_wrong_input = self.findChild(QLabel, "lbl_wrong_credentials")
         self.lbl_signup = self.findChild(QLabel, "lbl_signup")
 
+        self.wrong_inputs = False
+
         # actions
         self.btn_login.clicked.connect(self.btn_login_clicked)
 
