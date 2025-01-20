@@ -2,18 +2,15 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 import pyrebase
-
+import json
 
 class Read_db:
     def __init__(self):
-        config = {"apiKey": "AIzaSyBYJZmYSMs_KGrTFDjFRvb3n3rKXqnCoyM",
-                  "authDomain": "charityapp-998a9.firebaseapp.com",
-                  "databaseURL": "https://charityapp-998a9-default-rtdb.europe-west1.firebasedatabase.app",
-                  "projectId": "charityapp-998a9",
-                  "storageBucket": "charityapp-998a9.firebasestorage.app",
-                  "messagingSenderId": "386609417916",
-                  "appId": "1:386609417916:web:46df689fe99b051f2c0ab9",
-                  "measurementId": "G-HT63HBBW90"}
+        config_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'config', 'config.json'))
+
+        with open(config_path ,'r') as config_file:
+            config = json.load(config_file)
+
         firebase = pyrebase.initialize_app(config)
         self.database = firebase.database()
 
