@@ -36,3 +36,36 @@ class Read_db:
         if user_data.val() is not None:  # Check if user data exists
             return user_data.val().get("Password")  # Retrieve and return the password
         return None  # Return None if user does not exist
+    
+    def get_events(self):
+        events = self.database.child("Events").get()
+        if events.val() is not None:
+            
+            events_list = [event for event in events.val() if event is not None]
+            sorted_events = sorted(events_list, key=lambda x: x["date"])
+
+            return sorted_events
+        return None
+
+    def get_enrolled_events(self, user_id):
+        user_data = self.database.child("Users").child(user_id).get()
+        if user_data.val() is not None:
+            data = user_data.val()
+            return data.get('enrolled_events', [])
+        else:
+            return []
+
+
+    def get_company_name(self, event_id):
+        company_data = self.database.child("Events").child(event_id).get()
+        if company_data.val() is not None:
+            data = company_data.val()
+            return data.get('company_name', "")
+        return ""
+
+
+    def get_event_data(self, event_id):
+        event_data = self.database.child("Events").child(event_id).get()
+        if event_data.val() is not None:
+            return event_data.val()
+        return []
