@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>847</width>
+    <height>650</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>847</width>
+    <height>650</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -19,17 +25,84 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>801</width>
-      <height>501</height>
+      <width>841</width>
+      <height>541</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>840</width>
+      <height>0</height>
+     </size>
+    </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Main View</string>
      </attribute>
+     <widget class="QListWidget" name="event_list_area">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>60</y>
+        <width>731</width>
+        <height>441</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>730</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="verticalScrollMode">
+       <enum>QAbstractItemView::ScrollPerPixel</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>4</x>
+        <y>5</y>
+        <width>831</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>790</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Upcoming Charity Events</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -38,116 +111,125 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>40</y>
+        <x>20</x>
+        <y>60</y>
         <width>81</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>user name</string>
+       <string>Username</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>110</y>
+        <x>20</x>
+        <y>120</y>
         <width>81</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>password</string>
+       <string>Password</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>170</y>
-        <width>81</width>
+        <x>60</x>
+        <y>240</y>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>charities</string>
+       <string>My Enrolled Charities</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>170</y>
-        <width>81</width>
+        <x>470</x>
+        <y>240</y>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>events</string>
+       <string>My Enrolled Events</string>
       </property>
      </widget>
      <widget class="QListWidget" name="list_widget_ad_charities">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>200</y>
-        <width>256</width>
-        <height>192</height>
+        <x>60</x>
+        <y>270</y>
+        <width>291</width>
+        <height>151</height>
        </rect>
       </property>
      </widget>
      <widget class="QListWidget" name="list_widget_ad_events">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>200</y>
-        <width>256</width>
-        <height>192</height>
+        <x>470</x>
+        <y>270</y>
+        <width>291</width>
+        <height>151</height>
        </rect>
       </property>
      </widget>
      <widget class="QLineEdit" name="txt_ad_user_id">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>50</y>
-        <width>113</width>
-        <height>20</height>
+        <x>102</x>
+        <y>60</y>
+        <width>191</width>
+        <height>31</height>
        </rect>
       </property>
      </widget>
      <widget class="QLineEdit" name="txt_ad_password">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>100</x>
         <y>120</y>
-        <width>113</width>
-        <height>20</height>
+        <width>191</width>
+        <height>31</height>
        </rect>
       </property>
      </widget>
      <widget class="QPushButton" name="btn_ad_change_user_id">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>50</y>
-        <width>75</width>
-        <height>23</height>
+        <x>310</x>
+        <y>60</y>
+        <width>131</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
       <property name="text">
-       <string>change</string>
+       <string>Change Username</string>
       </property>
      </widget>
      <widget class="QPushButton" name="btn_ad_cancel_changes">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>610</x>
         <y>80</y>
         <width>75</width>
-        <height>23</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:lightgrey; border: 1px solid grey; border-radius: 5px; margin-top: 1px;</string>
       </property>
       <property name="text">
        <string>cancel</string>
@@ -156,53 +238,71 @@
      <widget class="QPushButton" name="btn_ad_withdraw_event">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>410</y>
-        <width>75</width>
-        <height>23</height>
+        <x>470</x>
+        <y>430</y>
+        <width>151</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
       <property name="text">
-       <string>withdrow</string>
+       <string>Withdraw from event</string>
       </property>
      </widget>
      <widget class="QPushButton" name="btn_ad_change_password">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>310</x>
         <y>120</y>
-        <width>75</width>
-        <height>23</height>
+        <width>131</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
       <property name="text">
-       <string>change</string>
+       <string>Change Password</string>
       </property>
      </widget>
      <widget class="QPushButton" name="btn_ad_confirm_changes">
       <property name="geometry">
        <rect>
-        <x>470</x>
+        <x>480</x>
         <y>80</y>
-        <width>75</width>
-        <height>23</height>
+        <width>121</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
       <property name="text">
-       <string>confirm</string>
+       <string>Confirm Changes</string>
       </property>
      </widget>
      <widget class="QPushButton" name="btn_ad_remove_account">
       <property name="geometry">
        <rect>
-        <x>274</x>
-        <y>440</y>
-        <width>111</width>
-        <height>23</height>
+        <x>10</x>
+        <y>470</y>
+        <width>811</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:lightgrey; border: 1px solid grey; border-radius: 5px; margin-top: 1px;</string>
+      </property>
       <property name="text">
-       <string>remove account</string>
+       <string>Remove Account</string>
       </property>
      </widget>
      <widget class="QLabel" name="lbl_ad_unavailable_user_id">
@@ -231,16 +331,74 @@
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>171</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>170</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Manage Account Details</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>180</y>
+        <width>791</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Manage Event Enrollments</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QPushButton" name="btn_logout">
     <property name="geometry">
      <rect>
-      <x>254</x>
-      <y>510</y>
+      <x>350</x>
+      <y>550</y>
       <width>161</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="text">
      <string>log out</string>
@@ -252,8 +410,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>21</height>
+     <width>847</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>

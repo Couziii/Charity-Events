@@ -18,6 +18,14 @@ class Controller:
         return self.read_db.get_user_id(user_id)
     def get_password(self, user_id):
         return self.read_db.get_password(user_id)
+    def get_events(self):
+        return self.read_db.get_events()
+    def get_enrolled_events(self, user_id):
+        return self.read_db.get_enrolled_events(user_id)
+    def get_company_name(self, event_id):
+        return self.read_db.get_company_name(event_id)
+    def get_event_data(self, event_id):
+        return self.read_db.get_event_data(event_id)
     
     # Write_db methods
     def insert_new_user(self, user_id, password, admin=False):
@@ -28,3 +36,7 @@ class Controller:
         self.write_db.change_password(user_id, password)
     def remove_account(self, user_id):
         self.write_db.remove_account(user_id)
+    def register_enrollment(self, event_id, user_id):
+        return self.write_db.register_enrollment(event_id, user_id)
+    def unenroll(self, event_id, user_id):
+        return self.write_db.unenroll(event_id, user_id)

@@ -29,3 +29,61 @@ class Write_db:
     
     def remove_account(self, user_id):
         self.database.child("Users").child(user_id).remove()
+    
+    def register_enrollment(self, event_id, user_id):
+        try:
+
+            user_data = self.database.child("Users").child(user_id).get()
+            event_data = self.database.child("Events").child(event_id).get()
+
+            if user_data.val() is not None and event_data.val() is not None:
+                enrolled_events = user_data.val().get("enrolled_events", [])
+                enrolled_users = event_data.val().get("enrolled_users", [])
+
+                if event_id not in enrolled_events:
+                    enrolled_events.append(event_id)
+                    self.database.child("Users").child(user_id).update({"enrolled_events": enrolled_events})
+                
+                if user_id not in enrolled_users:
+                    enrolled_users.append(user_id)
+                    self.database.child("Events").child(event_id).update({"enrolled_users": enrolled_users})
+                
+                return True
+
+            else:
+
+                return False
+
+        except Exception as e:
+            print("Error during registering enrollment", e)
+            return False
+
+    def unenroll(self, event_id, user_id):
+        try:
+            user_data = self.database.child("Users").child(user_id).get()
+            event_data = self.database.child("Events").child(event_id).get()
+
+            if user_data.val() is not None and event_data.val() is not None:
+                enrolled_events = user_data.val().get("enrolled_events", [])
+                enrolled_users = event_data.val().get("enrolled_users", [])
+
+                if event_id in enrolled_events:
+                    enrolled_events.remove(event_id)
+                    self.database.child("Users").child(user_id).update({"enrolled_events": enrolled_events})
+                
+                if user_id in enrolled_users:
+                    enrolled_users.remove(user_id)
+                    self.database.child("Events").child(event_id).update({"enrolled_users": enrolled_users})
+                
+                return True
+            
+            else:
+                return False
+        
+        except Exception as e:
+            print("Error during unenrollment", e)
+            return False
+                
+
+
+
