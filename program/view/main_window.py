@@ -18,6 +18,8 @@ class UI_main_window(QMainWindow):
 
         self.user_id = user_id
 
+        self.wrong_inputs = False
+
         # accessing widgets
 
         # main window
@@ -97,7 +99,7 @@ class UI_main_window(QMainWindow):
     def check_input(self):
         self.get_window_values()
         forbidden_symbols = ["'", '"', ";", "--", "/*", "*/", "#"]
-        if any(symbol in self.user_id for symbol in forbidden_symbols):
+        if any(symbol in self.user_id_new for symbol in forbidden_symbols):
           self.lbl_ad_unavailable_user_id.setText("No injection symbols allowed")
           self.wrong_inputs = True
         elif any(symbol in self.password for symbol in forbidden_symbols):
@@ -116,7 +118,7 @@ class UI_main_window(QMainWindow):
     def check_input2(self):
         self.get_window_values()
         forbidden_symbols = ["'", '"', ";", "--", "/*", "*/", "#"]
-        if any(symbol in self.user_id for symbol in forbidden_symbols):
+        if any(symbol in self.user_id_new for symbol in forbidden_symbols):
           self.lbl_ad_unavailable_user_id.setText("No injection symbols allowed")
           self.wrong_inputs = True
         elif any(symbol in self.password for symbol in forbidden_symbols):
