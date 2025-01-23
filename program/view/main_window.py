@@ -71,10 +71,9 @@ class UI_main_window(QMainWindow):
 
     def on_tab_changed(self, index):
         if index == 0: # main tab
-            self.load_enrolled_charities()
             pass
         else:
-            pass
+            self.load_enrolled_charities()
         
     def btn_logout_clicked(self):
         self.clear_account_detals_tab()
@@ -137,6 +136,8 @@ class UI_main_window(QMainWindow):
     def clear_account_detals_tab(self):
         self.txt_ad_user_id.clear()
         self.txt_ad_password.clear()
+        self.list_widget_ad_charities.clear()
+        self.list_widget_ad_events.clear()
         self.lbl_ad_unavailable_user_id.setText("")
         self.lbl_ad_unauthorized_password.setText("")
 
@@ -174,6 +175,7 @@ class UI_main_window(QMainWindow):
         self.btn_logout_clicked()
 
     def update_withdraw_button_state(self):
+        ''' User cannot click 'withdraw from event' unless they have selected a specific event in the events list. '''
 
         if self.list_widget_ad_events.currentItem():
             self.btn_ad_withdraw_event.setEnabled(True)
@@ -181,9 +183,9 @@ class UI_main_window(QMainWindow):
             self.btn_ad_withdraw_event.setEnabled(False)
     
     def btn_ad_withdraw_event_clicked(self):
+        ''' Withdraws user from an event and updates the charities and events lists in the account details and main tabs. '''
 
         selected_event = self.list_widget_ad_events.currentItem()
-
         event_id = selected_event.data(Qt.UserRole)
 
         success = self.controller.unenroll(event_id, self.user_id)
@@ -193,14 +195,16 @@ class UI_main_window(QMainWindow):
 
             if selected_charity:
                 self.charity_name_selected(selected_charity.text())
+            else:
+                self.list_widget_ad_events.clear()
             
-            self.load_events()
-            self.load_enrolled_charities()
+            self.load_events() # updates the main view to show unenrollment
+            self.load_enrolled_charities() # updates the charities list in the account details tab
         
         self.update_withdraw_button_state()
-
         
     def load_enrolled_charities(self):
+        ''' Displays the charities who's events the logged in user has enrolled to on the accound details tab. '''
 
         company_names = []
 
@@ -221,8 +225,9 @@ class UI_main_window(QMainWindow):
         else:
             return
     
-
     def charity_name_selected(self, item):
+        ''' User selected a charity name in the charity list 
+        -> this method will display all event names by the selected charity that the user has enrolled to. '''
         
         if isinstance(item, str):
             company_name = item
@@ -240,9 +245,8 @@ class UI_main_window(QMainWindow):
             item.setData(Qt.UserRole, event['event_id'])
             self.list_widget_ad_events.addItem(item)
 
-    
-
     def get_enrolled_events_by_company(self, company_name, enrolled_events):
+        ''' Fetches event data and returns the events that are held by a specified charity. '''
 
         events_by_company = []
 
@@ -257,12 +261,10 @@ class UI_main_window(QMainWindow):
         
         return events_by_company
 
-
-
-
     ##### MAIN WINDOW METHODS #####
 
     def load_events(self):
+        ''' Fetches all events from the database and adds each event to the main view. '''
 
         self.event_list_area.clear()
         
@@ -273,6 +275,7 @@ class UI_main_window(QMainWindow):
     
 
     def add_event_to_list(self, event_data):
+        ''' Creates a list item for an event and adds it to the main view. '''
 
         enrolled_events = self.controller.get_enrolled_events(self.user_id)
 
@@ -290,6 +293,7 @@ class UI_main_window(QMainWindow):
 
 
 class List_item_widget(QWidget):
+    ''' Class that creates a list item object for events. '''
 
     def __init__(self, data, user_id, controller, enrolled_events, parent=None):
 
@@ -326,8 +330,8 @@ class List_item_widget(QWidget):
 
         self.enroll_btn.clicked.connect(lambda: self.enroll(data))
     
-
     def enroll(self, data):
+        ''' Enrolls logged in user to the event that this list item widget represents. '''
         
         event_id = data.get("event_id")
 
@@ -338,10 +342,9 @@ class List_item_widget(QWidget):
             self.enroll_btn.setText("Enrolled")
             self.event_widget.setStyleSheet('background:lightgreen;')
 
-    
     def format_event_date(self, date_str):
+        ''' Finds the weekday from the date information in the database. Also organizes the date display order. '''
 
         date_object = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S")
 
         return date_object.strftime("%A %d.%m.%Y")
-

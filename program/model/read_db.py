@@ -38,9 +38,10 @@ class Read_db:
         return None  # Return None if user does not exist
     
     def get_events(self):
+        ''' Fetches all charity events from the database, removes any None values in the events list and organizes the events by date. '''
         events = self.database.child("Events").get()
+
         if events.val() is not None:
-            
             events_list = [event for event in events.val() if event is not None]
             sorted_events = sorted(events_list, key=lambda x: x["date"])
 
@@ -48,24 +49,30 @@ class Read_db:
         return None
 
     def get_enrolled_events(self, user_id):
+        ''' Fetches the data of a specified user. Then returns a list of event ids the user has enrolled to. '''
         user_data = self.database.child("Users").child(user_id).get()
+        
         if user_data.val() is not None:
             data = user_data.val()
+
             return data.get('enrolled_events', [])
         else:
             return []
 
-
     def get_company_name(self, event_id):
+        ''' Fetches the data of a specified event. Then returns the name of the charity that created that event. '''
         company_data = self.database.child("Events").child(event_id).get()
+        
         if company_data.val() is not None:
             data = company_data.val()
+            
             return data.get('company_name', "")
         return ""
 
-
     def get_event_data(self, event_id):
+        ''' Fetches and returns all data of a specified event. '''
         event_data = self.database.child("Events").child(event_id).get()
+        
         if event_data.val() is not None:
             return event_data.val()
         return []
