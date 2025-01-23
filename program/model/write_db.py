@@ -31,8 +31,8 @@ class Write_db:
         self.database.child("Users").child(user_id).remove()
     
     def register_enrollment(self, event_id, user_id):
+        ''' Updates the users and events collections to show an enrollment. '''
         try:
-
             user_data = self.database.child("Users").child(user_id).get()
             event_data = self.database.child("Events").child(event_id).get()
 
@@ -51,7 +51,6 @@ class Write_db:
                 return True
 
             else:
-
                 return False
 
         except Exception as e:
@@ -59,6 +58,7 @@ class Write_db:
             return False
 
     def unenroll(self, event_id, user_id):
+        ''' Updates the users and events collections to no longer show the enrollment. '''
         try:
             user_data = self.database.child("Users").child(user_id).get()
             event_data = self.database.child("Events").child(event_id).get()
@@ -84,6 +84,3 @@ class Write_db:
             print("Error during unenrollment", e)
             return False
                 
-
-
-
